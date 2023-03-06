@@ -16,6 +16,6 @@ data "azurerm_resource_group" "pe_vnet_rg" {
 # Private DNS Zone where the A record for the PE will be inserted 
 data "azurerm_private_dns_zone" "pe_private_dns_zone" {
   for_each            = var.private_endpoint
-  name                = var.private_dns_zone_name[var.cosmos_api]
+  name                = var.private_dns_zone_name
   resource_group_name = each.value.dns_zone_rg_name
 }

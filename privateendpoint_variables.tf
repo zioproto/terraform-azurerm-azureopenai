@@ -16,25 +16,13 @@ variable "private_endpoint" {
 }
 
 variable "pe_subresource" {
-  type        = map(any)
-  description = "Map of subresources to choose appropriate Private Endpoint sub resource for DB API"
-  default = {
-    sql       = "SQL"
-    table     = "Table"
-    gremlin   = "Gremlin"
-    mongo     = "MongoDB"
-    cassandra = "Cassandra"
-  }
+  type        = string
+  description = "Map of subresources to choose appropriate Private Endpoint sub resource"
+  default = "openai.azure.com"
 }
 
 variable "private_dns_zone_name" {
-  type        = map(any)
-  description = "Map of the private DNS zone to choose approrite Private DNS Zone for DB API."
-  default = {
-    sql       = "privatelink.documents.azure.com"
-    table     = "privatelink.table.cosmos.azure.com"
-    gremlin   = "privatelink.gremlin.cosmos.azure.com"
-    mongo     = "privatelink.mongo.cosmos.azure.com"
-    cassandra = "privatelink.cassandra.cosmos.azure.com"
-  }
+  type        = string
+  description = "Map of the private DNS zone to choose approrite Private DNS Zone"
+  default = "privatelink.openai.azure.com"
 }

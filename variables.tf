@@ -39,3 +39,16 @@ variable "public_network_access_enabled" {
   default     = false
 
 }
+
+variable "application_name" {
+  type        = string
+  description = "Name of the application."
+  default     = ""
+}
+
+variable "environment" {
+  type        = string
+  description = "Environment of the application."
+  default     = ""
+  
+}

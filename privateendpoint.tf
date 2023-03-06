@@ -17,7 +17,7 @@ resource "azurerm_private_endpoint" "this" {
     name                           = each.value.private_service_connection_name != "" ? each.value.private_service_connection_name : "privateserviceconnection"
     private_connection_resource_id = azurerm_cognitive_account.this.id
     is_manual_connection           = each.value.is_manual_connection != "" ? each.value.is_manual_connection : false
-    subresource_names              = [var.pe_subresource[var.cosmos_api]]
+    subresource_names              = [var.pe_subresource]
   }
 
   tags = local.tags
