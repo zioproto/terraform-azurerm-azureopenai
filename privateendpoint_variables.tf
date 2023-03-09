@@ -18,11 +18,11 @@ variable "private_endpoint" {
 variable "pe_subresource" {
   type        = string
   description = "Map of subresources to choose appropriate Private Endpoint sub resource"
-  default = "openai.azure.com"
+  default = "CognitiveServices"
 }
 
 variable "private_dns_zone_name" {
   type        = string
   description = "Map of the private DNS zone to choose approrite Private DNS Zone"
-  default = "privatelink.openai.azure.com"
+  default = "privatelink.cognitiveservices.azure.com"
 }
