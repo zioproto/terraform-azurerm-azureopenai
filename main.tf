@@ -14,7 +14,7 @@ terraform {
 resource "azurerm_cognitive_account" "this" {
   name                          = var.azureopenai_account_name
   location                      = var.location
-  resource_group_name           = data.azurerm_resource_group.this.name
+  resource_group_name           = azurerm_resource_group.this.name
   kind                          = "OpenAI"
   sku_name                      = var.sku_name
   public_network_access_enabled = var.public_network_access_enabled

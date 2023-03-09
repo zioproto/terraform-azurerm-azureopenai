@@ -1,19 +1,18 @@
 variable "resource_group_name" {
   type        = string
   description = "Name of the azure resource group."
-  default     = "openai-test-rg"
 }
 
 variable "location" {
   type        = string
   description = "Azure OpenAI deployment region."
-  default     = ""
+  default     = "westeurope"
 }
 
 variable "azureopenai_account_name" {
   type        = string
-  description = "Name of the Cosmos DB account."
-  default     = ""
+  description = "Name of the OpenAI account."
+  default     = "my-openai-account"
 }
 
 variable "sku_name" {
