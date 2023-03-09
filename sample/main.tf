@@ -38,7 +38,6 @@ module "openai" {
   source              = "git::https://github.com/soferreira/terraform-azurerm-azureopenai.git"
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
-  name                = "openai-account-tf"
   private_endpoint = {
     "pe_endpoint" = {
       enable_private_dns_entry        = true

@@ -12,8 +12,8 @@ terraform {
 }
 
 resource "azurerm_cognitive_account" "this" {
-  name                          = var.azureopenai_account_name
-  location                      = var.location
+  name                          = local.azureopenai_account_name
+  location                      = local.location
   resource_group_name           = azurerm_resource_group.this.name
   kind                          = "OpenAI"
   sku_name                      = var.sku_name
