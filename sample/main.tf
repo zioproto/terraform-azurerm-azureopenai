@@ -21,7 +21,7 @@ provider "azapi" {
 
 # Private DNS Zone for SQL API in both vnets
 resource "azurerm_private_dns_zone" "dns_zone" {
-  name                = "privatelink.documents.azure.com"
+  name                = "privatelink.openai.azure.com"
   resource_group_name = azurerm_resource_group.this.name
 }
 
