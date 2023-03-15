@@ -18,7 +18,7 @@ variable "private_endpoint" {
 variable "pe_subresource" {
   type        = string
   description = "Map of subresources to choose appropriate Private Endpoint sub resource"
-  default = "Microsoft.CognitiveServices/accounts"
+  default = "OpenAI"
 }
 
 variable "private_dns_zone_name" {
