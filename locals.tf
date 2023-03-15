@@ -10,5 +10,5 @@ locals {
     Environment      = "var.environment"
   }
   azureopenai_account_name = var.azureopenai_account_name != "" ? var.azureopenai_account_name : "openai-${random_integer.this.result}"
-  location             = var.location != "" ? var.location : data.azurerm_resource_group.this.location
+  location                 = var.location != "" ? var.location : data.azurerm_resource_group.this.location
 }

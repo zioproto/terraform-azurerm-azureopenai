@@ -50,5 +50,5 @@ variable "environment" {
   type        = string
   description = "Environment of the application."
   default     = ""
-  
+
 }
