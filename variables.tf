@@ -12,13 +12,11 @@ variable "location" {
 variable "azureopenai_account_name" {
   type        = string
   description = "Name of the OpenAI account."
-  default     = "my-openai-account"
 }
 
-variable "azureopenai_custom_subdomain_name" {
+variable "azureopenai_customsubdomain_name" {
   type        = string
   description = "Name of the OpenAI account custom subdomain."
-  default     = "azureopenai_custom_subdomain_name"
 }
 
 variable "sku_name" {
