@@ -15,6 +15,12 @@ variable "azureopenai_account_name" {
   default     = "my-openai-account"
 }
 
+variable "azureopenai_custom_subdomain_name" {
+  type        = string
+  description = "Name of the OpenAI account custom subdomain."
+  default     = "azureopenai_custom_subdomain_name"
+}
+
 variable "sku_name" {
   type        = string
   description = "Azure OpenAI account SKU name."
@@ -37,7 +43,6 @@ variable "public_network_access_enabled" {
   type        = bool
   description = "Azure OpenAI account public network access enabled."
   default     = false
-
 }
 
 variable "application_name" {

@@ -19,7 +19,7 @@ resource "azurerm_cognitive_account" "this" {
   sku_name                      = var.sku_name
   public_network_access_enabled = var.public_network_access_enabled
   tags                          = local.tags
-  custom_subdomain_name         = local.azureopenai_account_name
+  custom_subdomain_name         = local.azureopenai_custom_subdomain_name
 }
 
 # Just for testing
