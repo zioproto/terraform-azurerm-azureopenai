@@ -18,7 +18,7 @@ variable "private_endpoint" {
 variable "pe_subresource" {
   type        = string
   description = "Map of subresources to choose appropriate Private Endpoint sub resource"
-  default = "OpenAI"
+  default = "account"
 }
 
 variable "private_dns_zone_name" {
