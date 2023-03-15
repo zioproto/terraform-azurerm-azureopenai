@@ -21,3 +21,12 @@ resource "azurerm_cognitive_account" "this" {
   tags                          = local.tags
   custom_subdomain_name = "customsubdomainname"
 }
+
+# Just for testing
+output "openai_endpoint" {
+  value = azurerm_cognitive_account.this.endpoint
+}
+
+output "openai_key" {
+  value = azurerm_cognitive_account.this.primary_access_key
+}
