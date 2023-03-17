@@ -1,5 +1,7 @@
 module "vnet" {
-  source              = "git::https://github.com/lonegunmanb/terraform-azurerm-subnets.git"
+  source  = "Azure/subnets/azurerm"
+  version = "1.0.0"
+
   resource_group_name = azurerm_resource_group.this.name
   subnets = {
     subnet0 = {
