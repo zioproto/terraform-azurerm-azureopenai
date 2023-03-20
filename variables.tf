@@ -1,12 +1,17 @@
-variable "resource_group_name" {
-  type        = string
-  description = "Name of the azure resource group."
-}
-
 variable "location" {
   type        = string
-  description = "Azure OpenAI deployment region."
-  default     = "westeurope"
+  description = "Azure OpenAI deployment region. Set this variable to `null` would use resource group's location."
+}
+
+variable "resource_group_name" {
+  type        = string
+  description = "Name of the azure resource group to use. The resource group must exist."
+}
+
+variable "application_name" {
+  type        = string
+  description = "Name of the application."
+  default     = ""
 }
 
 variable "azureopenai_account_name" {
@@ -21,22 +26,53 @@ variable "azureopenai_customsubdomain_name" {
   default     = ""
 }
 
-variable "sku_name" {
-  type        = string
-  description = "Azure OpenAI account SKU name."
-  default     = "S0"
-}
-
+# tflint-ignore: terraform_unused_declarations
 variable "custom_subdomain_name" {
   type        = string
   description = "Azure OpenAI account custom subdomain name."
   default     = ""
 }
 
+variable "environment" {
+  type        = string
+  description = "Environment of the application."
+  default     = ""
+}
+
+# tflint-ignore: terraform_unused_declarations
 variable "network_acls_default_action" {
   type        = string
   description = "Azure OpenAI account network ACLs default action."
   default     = "Deny"
+}
+
+variable "pe_subresource" {
+  type        = string
+  description = "Map of subresources to choose appropriate Private Endpoint sub resource"
+  default     = "account"
+}
+
+variable "private_dns_zone_name" {
+  type        = string
+  description = "Map of the private DNS zone to choose approrite Private DNS Zone"
+  default     = "privatelink.openai.azure.com"
+}
+
+variable "private_endpoint" {
+  type = map(object({
+    name                            = string
+    vnet_rg_name                    = string
+    vnet_name                       = string
+    subnet_name                     = string
+    dns_zone_rg_name                = optional(string, "default")
+    private_dns_entry_enabled       = optional(bool, false)
+    dns_zone_group_name             = string
+    private_service_connection_name = optional(string, "privateserviceconnection")
+    is_manual_connection            = optional(bool, false)
+  }))
+  description = "Parameters for private endpoint creation"
+  default     = {}
+  nullable    = false
 }
 
 variable "public_network_access_enabled" {
@@ -45,15 +81,8 @@ variable "public_network_access_enabled" {
   default     = false
 }
 
-variable "application_name" {
+variable "sku_name" {
   type        = string
-  description = "Name of the application."
-  default     = ""
-}
-
-variable "environment" {
-  type        = string
-  description = "Environment of the application."
-  default     = ""
-
+  description = "Azure OpenAI account SKU name."
+  default     = "S0"
 }

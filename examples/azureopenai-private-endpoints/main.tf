@@ -1,24 +1,3 @@
-# Azure provider version 
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = ">=3.0"
-    }
-    azapi = {
-      source = "azure/azapi"
-    }
-  }
-}
-
-provider "azurerm" {
-  features {}
-}
-
-provider "azapi" {
-  features {}
-}
-
 # Private DNS Zone for SQL API in both vnets
 resource "azurerm_private_dns_zone" "dns_zone" {
   name                = "privatelink.openai.azure.com"
@@ -27,15 +6,14 @@ resource "azurerm_private_dns_zone" "dns_zone" {
 
 resource "azurerm_private_dns_zone_virtual_network_link" "zone_link_one" {
   name                  = "dns_zone_link"
-  resource_group_name   = azurerm_resource_group.this.name
   private_dns_zone_name = azurerm_private_dns_zone.dns_zone.name
+  resource_group_name   = azurerm_resource_group.this.name
   virtual_network_id    = module.vnet.vnet_id
   registration_enabled  = false
 }
 
-
 module "openai" {
-  source              = "git::https://github.com/soferreira/terraform-azurerm-azureopenai.git"
+  source              = "../.."
   resource_group_name = azurerm_resource_group.this.name
   location            = azurerm_resource_group.this.location
   private_endpoint = {
