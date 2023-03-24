@@ -9,6 +9,6 @@ module "vnet" {
     }
   }
   virtual_network_address_space = ["10.52.0.0/16"]
-  virtual_network_location      = "westeurope"
+  virtual_network_location      = azurerm_resource_group.this.location
   virtual_network_name          = "vnet"
 }
