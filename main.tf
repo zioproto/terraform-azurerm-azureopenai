@@ -24,7 +24,7 @@ resource "azurerm_cognitive_account" "this" {
   public_network_access_enabled = var.public_network_access_enabled
   tags                          = local.tags
   identity {
-    type         = "SystemAssigned, UserAssigned"
+    type         = "UserAssigned"
     identity_ids = [azurerm_user_assigned_identity.this.id]
   }
 }
