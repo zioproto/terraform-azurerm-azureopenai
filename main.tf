@@ -4,8 +4,8 @@ resource "random_integer" "this" {
 }
 
 locals {
-  azureopenai_account_name         = coalesce(var.azureopenai_account_name, "azureopenaii-${random_integer.this.result}")
-  azureopenai_customsubdomain_name = coalesce(var.azureopenai_customsubdomain_name, "azureopenaii-${random_integer.this.result}")
+  azureopenai_account_name         = coalesce(var.azureopenai_account_name, "azureopenai-${random_integer.this.result}")
+  azureopenai_customsubdomain_name = coalesce(var.azureopenai_customsubdomain_name, "azureopenai-${random_integer.this.result}")
 }
 
 resource "azurerm_user_assigned_identity" "this" {
