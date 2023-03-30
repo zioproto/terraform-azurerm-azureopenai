@@ -4,6 +4,6 @@ resource "random_integer" "this" {
 }
 
 resource "azurerm_resource_group" "this" {
-  location = "eastus"
+  location = "westeurope"
   name     = "rg-openai-tf-${random_integer.this.result}"
 }
