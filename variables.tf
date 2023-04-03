@@ -26,6 +26,12 @@ variable "azureopenai_customsubdomain_name" {
   default     = ""
 }
 
+variable "azureopenai_deployment_name" {
+  type        = string
+  description = "OpenAI model deployments."
+  default     = ""
+}
+
 variable "deployment" {
   type = map(object({
     name          = string
@@ -37,12 +43,6 @@ variable "deployment" {
   description = "Parameters for deployment creation"
   default     = {}
   nullable    = false
-}
-
-variable "azureopenai_deployment_name" {
-  type        = string
-  description = "OpenAI model deployments."
-  default     = ""
 }
 
 variable "environment" {
