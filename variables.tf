@@ -28,7 +28,7 @@ variable "azureopenai_customsubdomain_name" {
 
 variable "deployment" {
   type = map(object({
-    name = string
+    name          = string
     model_format  = string
     model_name    = string
     model_version = string
