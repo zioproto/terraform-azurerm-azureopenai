@@ -29,6 +29,22 @@ module "openai" {
       vnet_rg_name                    = azurerm_resource_group.this.name
     }
   }
+  deployment = {
+    "text-curie-001" = {
+      name = "text-curie-001"
+      model_format  = "OpenAI"
+      model_name    = "text-curie-001"
+      model_version = "1"
+      scale_type = "Standard"
+    },
+    "text-search-curie-query-001" = {
+      name = "text-search-curie-query-001"
+      model_format  = "OpenAI"
+      model_name    = "text-search-curie-query-001"
+      model_version = "1"
+      scale_type = "Standard"
+    },
+  }
   depends_on = [
     azurerm_resource_group.this,
     azurerm_private_dns_zone.dns_zone,

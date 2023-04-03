@@ -26,10 +26,22 @@ variable "azureopenai_customsubdomain_name" {
   default     = ""
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "custom_subdomain_name" {
+variable "deployment" {
+  type = map(object({
+    name = string
+    model_format  = string
+    model_name    = string
+    model_version = string
+    scale_type    = string
+  }))
+  description = "Parameters for deployment creation"
+  default     = {}
+  nullable    = false
+}
+
+variable "azureopenai_deployment_name" {
   type        = string
-  description = "Azure OpenAI account custom subdomain name."
+  description = "OpenAI model deployments."
   default     = ""
 }
 
