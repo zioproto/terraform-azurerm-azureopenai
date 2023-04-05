@@ -70,13 +70,13 @@ We provide a docker image to run the pre-commit checks and tests for you: `mcr.m
 To run the pre-commit task, we can run the following command:
 
 ```shell
-$ docker run --rm -v $(pwd):/src -w /src mcr.microsoft.com/azterraform:latest make pre-commit
+docker run --rm -v $(pwd):/src -w /src mcr.microsoft.com/azterraform:latest make pre-commit
 ```
 
 On Windows Powershell:
 
 ```shell
-$ docker run --rm -v ${pwd}:/src -w /src mcr.microsoft.com/azterraform:latest make pre-commit
+docker run --rm -v ${pwd}:/src -w /src mcr.microsoft.com/azterraform:latest make pre-commit
 ```
 
 In pre-commit task, we will:
@@ -91,13 +91,13 @@ In pre-commit task, we will:
 Then we can run the pr-check task to check whether our code meets our pipeline's requirement(We strongly recommend you run the following command before you commit):
 
 ```shell
-$ docker run --rm -v $(pwd):/src -w /src mcr.microsoft.com/azterraform:latest make pr-check
+docker run --rm -v $(pwd):/src -w /src mcr.microsoft.com/azterraform:latest make pr-check
 ```
 
 On Windows Powershell:
 
 ```shell
-$ docker run --rm -v ${pwd}:/src -w /src mcr.microsoft.com/azterraform:latest make pr-check
+docker run --rm -v ${pwd}:/src -w /src mcr.microsoft.com/azterraform:latest make pr-check
 ```
 
 To run the e2e-test, we can run the following command:
