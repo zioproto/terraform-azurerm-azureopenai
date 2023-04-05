@@ -1,3 +1,16 @@
+resource "azurerm_private_dns_zone" "dns_zone" {
+  name                = "privatelink.openai.azure.com"
+  resource_group_name = azurerm_resource_group.this.name
+}
+
+resource "azurerm_private_dns_zone_virtual_network_link" "zone_link" {
+  name                  = "dns_zone_link"
+  private_dns_zone_name = azurerm_private_dns_zone.dns_zone.name
+  resource_group_name   = azurerm_resource_group.this.name
+  virtual_network_id    = module.vnet.vnet_id
+  registration_enabled  = false
+}
+
 module "vnet" {
   source  = "Azure/subnets/azurerm"
   version = "1.0.0"

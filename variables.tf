@@ -33,10 +33,25 @@ variable "deployment" {
     model_name    = string
     model_version = string
     scale_type    = string
+    rai_policy_name = optional(string)
   }))
-  description = "Parameters for deployment creation"
   default     = {}
   nullable    = false
+  description = <<DESCRIPTION
+    deployment = {
+      name                 = "(Required) The name of the Cognitive Services Account Deployment. Changing this forces a new resource to be created."
+      cognitive_account_id = "(Required) The ID of the Cognitive Services Account. Changing this forces a new resource to be created."
+      model = {
+        model_format  = "(Required) The format of the Cognitive Services Account Deployment model. Changing this forces a new resource to be created. Possible value is OpenAI."
+        model_name    = "(Required) The name of the Cognitive Services Account Deployment model. Changing this forces a new resource to be created."
+        model_version = "(Required) The version of Cognitive Services Account Deployment model."
+      }
+      scale = {
+        scale_type = "(Required) Deployment scale type. Possible value is Standard. Changing this forces a new resource to be created."
+      }
+      rai_policy_name = "(Optional) The name of RAI policy. Changing this forces a new resource to be created."
+    }
+  DESCRIPTION
 }
 
 variable "azureopenai_deployment_name" {
@@ -97,4 +112,10 @@ variable "sku_name" {
   type        = string
   description = "Azure OpenAI account SKU name."
   default     = "S0"
+}
+
+variable "default_tags_enabled " {
+  type    = bool
+  description = "Determines whether or not default tags are applied to resources. If set to true, tags will be applied. If set to false, tags will not be applied."
+  default = false
 }
