@@ -108,7 +108,7 @@ variable "sku_name" {
   default     = "S0"
 }
 
-variable "default_tags_enabled " {
+variable "default_tags_enabled" {
   type        = bool
   description = "Determines whether or not default tags are applied to resources. If set to true, tags will be applied. If set to false, tags will not be applied."
   default     = false
