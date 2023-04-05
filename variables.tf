@@ -26,6 +26,12 @@ variable "azureopenai_customsubdomain_name" {
   default     = ""
 }
 
+variable "default_tags_enabled" {
+  type        = bool
+  description = "Determines whether or not default tags are applied to resources. If set to true, tags will be applied. If set to false, tags will not be applied."
+  default     = false
+}
+
 variable "deployment" {
   type = map(object({
     name            = string
@@ -106,10 +112,4 @@ variable "sku_name" {
   type        = string
   description = "Azure OpenAI account SKU name."
   default     = "S0"
-}
-
-variable "default_tags_enabled" {
-  type        = bool
-  description = "Determines whether or not default tags are applied to resources. If set to true, tags will be applied. If set to false, tags will not be applied."
-  default     = false
 }
