@@ -61,3 +61,55 @@ No modules.
 | <a name="output_openai_endpoint"></a> [openai\_endpoint](#output\_openai\_endpoint) | The endpoint used to connect to the Cognitive Service Account. |
 | <a name="output_openai_key"></a> [openai\_key](#output\_openai\_key)                | The primary access key for the Cognitive Service Account.      |
 <!-- END_TF_DOCS -->
+
+
+# Contributing
+
+Before submitting a pull request, please make sure the following is done:
+
+We provide a docker image to run the pre-commit checks and tests for you: `mcr.microsoft.com/azterraform:latest`
+
+To run the pre-commit task, we can run the following command:
+
+```shell
+docker run --rm -v $(pwd):/src -w /src mcr.microsoft.com/azterraform:latest make pre-commit
+```
+
+On Windows Powershell:
+
+```shell
+docker run --rm -v ${pwd}:/src -w /src mcr.microsoft.com/azterraform:latest make pre-commit
+```
+
+In pre-commit task, we will:
+
+1. Run `terraform fmt -recursive` command for your Terraform code.
+2. Run `terrafmt fmt -f` command for markdown files and go code files to ensure that the Terraform code embedded in these files are well formatted.
+3. Run `go mod tidy` and `go mod vendor` for test folder to ensure that all the dependencies have been synced.
+4. Run `gofmt` for all go code files.
+5. Run `gofumpt` for all go code files.
+6. Run `terraform-docs` on `README.md` file, then run `markdown-table-formatter` to format markdown tables in `README.md`.
+
+Then we can run the pr-check task to check whether our code meets our pipeline's requirement(We strongly recommend you run the following command before you commit):
+
+```shell
+docker run --rm -v $(pwd):/src -w /src mcr.microsoft.com/azterraform:latest make pr-check
+```
+
+On Windows Powershell:
+
+```shell
+docker run --rm -v ${pwd}:/src -w /src mcr.microsoft.com/azterraform:latest make pr-check
+```
+
+To run the e2e-test, we can run the following command:
+
+```text
+docker run --rm -v $(pwd):/src -w /src -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make e2e-test
+```
+
+On Windows Powershell:
+
+```text
+docker run --rm -v ${pwd}:/src -w /src -e ARM_SUBSCRIPTION_ID -e ARM_TENANT_ID -e ARM_CLIENT_ID -e ARM_CLIENT_SECRET mcr.microsoft.com/azterraform:latest make e2e-test
+```
