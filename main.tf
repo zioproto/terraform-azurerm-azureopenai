@@ -6,7 +6,6 @@ resource "random_integer" "this" {
 locals {
   azureopenai_account_name         = coalesce(var.azureopenai_account_name, "azureopenai-${random_integer.this.result}")
   azureopenai_customsubdomain_name = coalesce(var.azureopenai_customsubdomain_name, "azureopenai-${random_integer.this.result}")
-  azureopenai_deployment_name      = coalesce(var.azureopenai_deployment_name, "deployment-${random_integer.this.result}")
   tags = var.default_tags_enabled ? {
     Application_Name = var.application_name
     Environment          = var.environment
@@ -30,6 +29,7 @@ resource "azurerm_cognitive_deployment" "this" {
 
   name                 = each.value.name
   cognitive_account_id = azurerm_cognitive_account.this.id
+
   model {
     format  = each.value.model_format
     name    = each.value.model_name
@@ -39,3 +39,4 @@ resource "azurerm_cognitive_deployment" "this" {
     type = each.value.scale_type
   }
 }
+
