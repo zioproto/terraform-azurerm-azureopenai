@@ -8,7 +8,7 @@ locals {
   azureopenai_customsubdomain_name = coalesce(var.azureopenai_customsubdomain_name, "azureopenai-${random_integer.this.result}")
   tags = var.default_tags_enabled ? {
     Application_Name = var.application_name
-    Environment          = var.environment
+    Environment      = var.environment
   } : {}
 
 }

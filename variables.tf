@@ -28,11 +28,11 @@ variable "azureopenai_customsubdomain_name" {
 
 variable "deployment" {
   type = map(object({
-    name          = string
-    model_format  = string
-    model_name    = string
-    model_version = string
-    scale_type    = string
+    name            = string
+    model_format    = string
+    model_name      = string
+    model_version   = string
+    scale_type      = string
     rai_policy_name = optional(string)
   }))
   default     = {}
@@ -77,7 +77,21 @@ variable "private_endpoint" {
     private_service_connection_name = optional(string, "privateserviceconnection")
     is_manual_connection            = optional(bool, false)
   }))
-  description = "Parameters for private endpoint creation"
+  description = <<DESCRIPTION
+    deployment = {
+      name                 = "(Required) The name of the Cognitive Services Account Deployment. Changing this forces a new resource to be created."
+      cognitive_account_id = "(Required) The ID of the Cognitive Services Account. Changing this forces a new resource to be created."
+      model = {
+        model_format  = "(Required) The format of the Cognitive Services Account Deployment model. Changing this forces a new resource to be created. Possible value is OpenAI."
+        model_name    = "(Required) The name of the Cognitive Services Account Deployment model. Changing this forces a new resource to be created."
+        model_version = "(Required) The version of Cognitive Services Account Deployment model."
+      }
+      scale = {
+        scale_type = "(Required) Deployment scale type. Possible value is Standard. Changing this forces a new resource to be created."
+      }
+      rai_policy_name = "(Optional) The name of RAI policy. Changing this forces a new resource to be created."
+    }
+  DESCRIPTION
   default     = {}
   nullable    = false
 }
@@ -95,7 +109,7 @@ variable "sku_name" {
 }
 
 variable "default_tags_enabled " {
-  type    = bool
+  type        = bool
   description = "Determines whether or not default tags are applied to resources. If set to true, tags will be applied. If set to false, tags will not be applied."
-  default = false
+  default     = false
 }
