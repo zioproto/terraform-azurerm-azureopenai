@@ -26,11 +26,39 @@ variable "azureopenai_customsubdomain_name" {
   default     = ""
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "custom_subdomain_name" {
-  type        = string
-  description = "Azure OpenAI account custom subdomain name."
-  default     = ""
+variable "default_tags_enabled" {
+  type        = bool
+  description = "Determines whether or not default tags are applied to resources. If set to true, tags will be applied. If set to false, tags will not be applied."
+  default     = false
+  nullable    = false
+}
+
+variable "deployment" {
+  type = map(object({
+    name            = string
+    model_format    = string
+    model_name      = string
+    model_version   = string
+    scale_type      = string
+    rai_policy_name = optional(string)
+  }))
+  default     = {}
+  nullable    = false
+  description = <<DESCRIPTION
+      deployment = {
+        name                 = "(Required) The name of the Cognitive Services Account Deployment. Changing this forces a new resource to be created."
+        cognitive_account_id = "(Required) The ID of the Cognitive Services Account. Changing this forces a new resource to be created."
+        model = {
+          model_format  = "(Required) The format of the Cognitive Services Account Deployment model. Changing this forces a new resource to be created. Possible value is OpenAI."
+          model_name    = "(Required) The name of the Cognitive Services Account Deployment model. Changing this forces a new resource to be created."
+          model_version = "(Required) The version of Cognitive Services Account Deployment model."
+        }
+        scale = {
+          scale_type = "(Required) Deployment scale type. Possible value is Standard. Changing this forces a new resource to be created."
+        }
+        rai_policy_name = "(Optional) The name of RAI policy. Changing this forces a new resource to be created."
+      }
+  DESCRIPTION
 }
 
 variable "environment" {
@@ -70,7 +98,7 @@ variable "private_endpoint" {
     private_service_connection_name = optional(string, "privateserviceconnection")
     is_manual_connection            = optional(bool, false)
   }))
-  description = "Parameters for private endpoint creation"
+  description = "A map of objects that represent the configuration for a private endpoint."
   default     = {}
   nullable    = false
 }
