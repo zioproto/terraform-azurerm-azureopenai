@@ -67,11 +67,17 @@ variable "environment" {
   default     = ""
 }
 
-# tflint-ignore: terraform_unused_declarations
-variable "network_acls_default_action" {
-  type        = string
-  description = "Azure OpenAI account network ACLs default action."
-  default     = "Deny"
+variable "network_acls" {
+  type = object({
+    default_action = string
+    ip_rules       = list(string)
+    virtual_network_rules = object({
+      subnet_id                            = string
+      ignore_missing_vnet_service_endpoint = bool
+    })
+  })
+  description = "An object that represents the configuration for a network ACL."
+  default     = null
 }
 
 variable "pe_subresource" {

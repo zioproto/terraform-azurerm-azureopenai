@@ -5,7 +5,7 @@ module "openai" {
   private_endpoint = {
     "pe_endpoint" = {
       enable_private_dns_entry        = true
-      dns_zone_group_name             = "pe_one_zone_group"
+      dns_zone_group_name             = azurerm_private_dns_zone.dns_zone.name
       dns_zone_rg_name                = azurerm_private_dns_zone.dns_zone.resource_group_name
       is_manual_connection            = false
       name                            = "pe_one"
@@ -31,8 +31,17 @@ module "openai" {
       scale_type    = "Standard"
     },
   }
+  network_acls = {
+    default_action = "Allow"
+    ip_rules       = []
+    virtual_network_rules = {
+      subnet_id                            = lookup(module.vnet.vnet_subnets_name_id, "subnet0")
+      ignore_missing_vnet_service_endpoint = false
+    }
+  }
   depends_on = [
     azurerm_resource_group.this,
     azurerm_private_dns_zone.dns_zone,
+    module.vnet,
   ]
 }
