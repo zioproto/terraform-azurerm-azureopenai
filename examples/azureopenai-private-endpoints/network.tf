@@ -11,6 +11,22 @@ resource "azurerm_private_dns_zone_virtual_network_link" "zone_link" {
   registration_enabled  = false
 }
 
+resource "azurerm_private_dns_a_record" "example" {  
+  name                = "example-a-record"  
+  zone_name           = azurerm_private_dns_zone.dns_zone.name  
+  resource_group_name = azurerm_resource_group.this.name
+  ttl                 = 300  
+  records             = ["10.52.0.5"]  # remove hardcoded value
+}  
+  
+resource "azurerm_private_dns_cname_record" "example" {  
+  name                = "example-cname-record"  
+  zone_name           = azurerm_private_dns_zone.dns_zone.name  
+  resource_group_name = azurerm_resource_group.this.name
+  ttl                 = 300  
+  record              = replace(replace(module.openai.openai_endpoint, "https://", ""), "/", "")
+}
+
 module "vnet" {
   source  = "Azure/subnets/azurerm"
   version = "1.0.0"
