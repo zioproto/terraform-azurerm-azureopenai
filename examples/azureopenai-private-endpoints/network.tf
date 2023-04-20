@@ -11,6 +11,14 @@ resource "azurerm_private_dns_zone_virtual_network_link" "zone_link" {
   registration_enabled  = false
 }
 
+resource "azurerm_private_dns_a_record" "openai" {
+  name                = module.openai.openai_subdomain
+  zone_name           = azurerm_private_dns_zone.dns_zone.name
+  resource_group_name = azurerm_resource_group.this.name
+  ttl                 = 300
+  records             = [module.openai.private_ip_address]
+}
+
 module "vnet" {
   source  = "Azure/subnets/azurerm"
   version = "1.0.0"
