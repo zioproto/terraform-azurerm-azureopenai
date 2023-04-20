@@ -23,15 +23,6 @@ resource "azurerm_cognitive_account" "this" {
   public_network_access_enabled = var.public_network_access_enabled
   tags                          = local.tags
 
-  network_acls {
-    default_action = var.network_acls.default_action
-    ip_rules       = var.network_acls.ip_rules
-
-    virtual_network_rules {
-      subnet_id                            = var.network_acls.virtual_network_rules.subnet_id
-      ignore_missing_vnet_service_endpoint = var.network_acls.virtual_network_rules.ignore_missing_vnet_service_endpoint
-    }
-  }
 }
 
 resource "azurerm_cognitive_deployment" "this" {

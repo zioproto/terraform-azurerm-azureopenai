@@ -31,14 +31,6 @@ module "openai" {
       scale_type    = "Standard"
     },
   }
-  network_acls = {
-    default_action = "Allow"
-    ip_rules       = []
-    virtual_network_rules = {
-      subnet_id                            = lookup(module.vnet.vnet_subnets_name_id, "subnet0")
-      ignore_missing_vnet_service_endpoint = false
-    }
-  }
   depends_on = [
     azurerm_resource_group.this,
     azurerm_private_dns_zone.dns_zone,
